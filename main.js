@@ -1,4 +1,5 @@
-// RadiusBot site behaviour: mobile menu, contact form and scroll reveal.
+// RadiusBot site behaviour: mobile menu, process tabs, contact form and
+// scroll reveal.
 // Everything on the page works without this script; the contact form then
 // falls back to a normal POST to FormSubmit.
 
@@ -18,6 +19,7 @@ const FORM_TIMEOUT_MS = 15000;
 
 document.addEventListener('DOMContentLoaded', () => {
     setUpMobileMenu();
+    setUpProcessTabs();
     setUpContactForm();
     setUpReveal();
     document.getElementById('year').textContent = String(new Date().getFullYear());
@@ -47,6 +49,39 @@ function setUpMobileMenu() {
             toggle.focus();
         }
     });
+}
+
+// ----------------------------------------------------------- process tabs
+
+// Turns the stacked steps into tabs (WAI-ARIA tabs pattern: arrow keys move
+// between tabs). Without this script every step is shown in order.
+function setUpProcessTabs() {
+    const root = document.querySelector('[data-tabs]');
+    const tabs = [...root.querySelectorAll('[role="tab"]')];
+    const panels = tabs.map((tab) => document.getElementById(tab.getAttribute('aria-controls')));
+
+    const select = (index, moveFocus) => {
+        tabs.forEach((tab, i) => {
+            const selected = i === index;
+            tab.setAttribute('aria-selected', String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+            panels[i].hidden = !selected;
+        });
+        if (moveFocus) tabs[index].focus();
+    };
+
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => select(index, false));
+        tab.addEventListener('keydown', (event) => {
+            const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
+            if (step === undefined) return;
+            event.preventDefault();
+            select((index + step + tabs.length) % tabs.length, true);
+        });
+    });
+
+    root.classList.add('is-enhanced');
+    select(0, false);
 }
 
 // ----------------------------------------------------------- contact form
@@ -177,7 +212,7 @@ function setUpReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const targets = document.querySelectorAll(
-        '.section-head, .app-card, .service-card, .steps li, .contact-intro, .form-card',
+        '.section-head, .promise-inner, .showcase, .service, .banner, .process, .tech-card, .why, .faq details, .contact-intro, .form-card',
     );
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
