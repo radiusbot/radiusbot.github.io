@@ -95,6 +95,7 @@ function setUpContactForm() {
     const fields = {
         name: form.elements.name,
         email: form.elements.email,
+        phone: form.elements.phone,
         topic: form.elements.topic,
         message: form.elements.message,
         honeypot: form.elements._honey,
@@ -106,26 +107,28 @@ function setUpContactForm() {
     };
 
     // Clear a field's error as soon as the visitor edits it.
-    [fields.name, fields.email, fields.message].forEach((field) => {
+    [fields.name, fields.email, fields.phone, fields.message].forEach((field) => {
         field.addEventListener('input', () => field.removeAttribute('aria-invalid'));
     });
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const invalid = [fields.name, fields.email, fields.message].filter((field) => {
-            const bad = !field.value.trim() || !field.checkValidity();
+        const invalid = [fields.name, fields.email, fields.phone, fields.message].filter((field) => {
+            const bad = !field.value.trim() || !field.checkValidity()
+                || (field === fields.phone && !isPhoneNumber(field.value));
             if (bad) field.setAttribute('aria-invalid', 'true');
             return bad;
         });
         if (invalid.length > 0) {
-            setStatus('Please fill in your name, a valid email and a message.', true);
+            setStatus('Please fill in your name, a valid email, a phone number and a message.', true);
             invalid[0].focus();
             return;
         }
 
         const name = fields.name.value.trim();
         const email = fields.email.value.trim();
+        const phone = fields.phone.value.trim();
         const topic = fields.topic.value;
         const message = fields.message.value.trim();
 
@@ -141,10 +144,10 @@ function setUpContactForm() {
         setStatus('', false);
 
         try {
-            await sendMessage({ name, email, topic, message });
+            await sendMessage({ name, email, phone, topic, message });
             showSuccess(email);
         } catch {
-            const mailto = buildMailto({ name, email, topic, message });
+            const mailto = buildMailto({ name, email, phone, topic, message });
             setStatus(
                 `Your message couldn't be sent. Please try again, or email us at ` +
                 `<a href="${mailto}">${CONTACT_EMAIL}</a>.`,
@@ -171,7 +174,14 @@ function setUpContactForm() {
     }
 }
 
-async function sendMessage({ name, email, topic, message }) {
+// 7 to 15 digits: the shortest local numbers to the longest international
+// (E.164) ones. Spaces, dashes, brackets and a leading + are allowed.
+function isPhoneNumber(value) {
+    const digits = value.replace(/\D/g, '');
+    return /^\+?[0-9 ()-]+$/.test(value.trim()) && digits.length >= 7 && digits.length <= 15;
+}
+
+async function sendMessage({ name, email, phone, topic, message }) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), FORM_TIMEOUT_MS);
     try {
@@ -181,6 +191,7 @@ async function sendMessage({ name, email, topic, message }) {
             body: JSON.stringify({
                 name,
                 email,
+                phone,
                 topic,
                 message,
                 _subject: `New enquiry from radiusbot.com: ${topic}`,
@@ -199,9 +210,9 @@ async function sendMessage({ name, email, topic, message }) {
     }
 }
 
-function buildMailto({ name, email, topic, message }) {
+function buildMailto({ name, email, phone, topic, message }) {
     const subject = `Enquiry from ${name}: ${topic}`;
-    const body = `${message}\n\nName: ${name}\nEmail: ${email}`;
+    const body = `${message}\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`;
     return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 

@@ -106,8 +106,8 @@
     </script>
 
     <link rel="preload" as="image" href="/assets/apps/lexitile-search.jpg">
-    <link rel="stylesheet" href="/styles.css?v=3e10075588">
-    <script src="/main.js?v=ad87a22fc4" defer></script>
+    <link rel="stylesheet" href="/styles.css?v=0fb90d191b">
+    <script src="/main.js?v=95db115299" defer></script>
 </head>
 <body>
     <!-- Icon sprite: 24px grid, 2px stroke. -->
@@ -571,6 +571,12 @@
                                 <label for="contact-email">Email</label>
                                 <input id="contact-email" name="email" type="email" autocomplete="email" required>
                             </div>
+                        </div>
+                        <div class="field">
+                            <label for="contact-phone">Phone</label>
+                            <input id="contact-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required
+                                   pattern="\+?[0-9 \(\)\-]{7,20}" aria-describedby="contact-phone-hint" placeholder="+91 98765 43210">
+                            <p id="contact-phone-hint" class="field-hint">Include your country code, so we can call or message you.</p>
                         </div>
                         <fieldset class="field">
                             <legend>What do you need?</legend>
