@@ -280,9 +280,9 @@ ul, ol { padding: 0; list-style: none; }
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(4, 7, 14, 0.78);
-    backdrop-filter: saturate(160%) blur(14px);
-    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    /* Opaque rather than a backdrop blur: blurring the phone screens behind
+       it on every scrolled frame made scrolling stutter. */
+    background: rgba(4, 7, 14, 0.96);
     border-bottom: 1px solid var(--border);
 }
 
@@ -364,7 +364,9 @@ ul, ol { padding: 0; list-style: none; }
     .hero { padding-top: var(--space-9); }
 }
 
-/* A quiet starfield: three tiled layers of tiny dots, drifting slowly. */
+/* A quiet starfield: three tiled layers of tiny dots. The two upper layers
+   drift by moving with transform, which the GPU handles without repainting;
+   each is one tile taller than the hero so the loop is seamless. */
 .stars,
 .stars::before,
 .stars::after {
@@ -373,6 +375,8 @@ ul, ol { padding: 0; list-style: none; }
     background-repeat: repeat;
     pointer-events: none;
 }
+
+.stars { overflow: hidden; }
 
 .stars {
     background-image:
@@ -389,7 +393,9 @@ ul, ol { padding: 0; list-style: none; }
         radial-gradient(1.5px 1.5px at 60px 40px, rgba(95, 247, 240, 0.7), transparent),
         radial-gradient(1px 1px at 210px 190px, rgba(243, 247, 251, 0.5), transparent);
     background-size: 320px 320px;
-    animation: drift 90s linear infinite;
+    bottom: -320px;
+    will-change: transform;
+    animation: drift-near 90s linear infinite;
 }
 
 .stars::after {
@@ -398,11 +404,17 @@ ul, ol { padding: 0; list-style: none; }
         radial-gradient(1px 1px at 150px 260px, rgba(243, 247, 251, 0.45), transparent),
         radial-gradient(2px 2px at 380px 90px, rgba(95, 247, 240, 0.5), transparent);
     background-size: 460px 460px;
-    animation: drift 140s linear infinite reverse;
+    bottom: -460px;
+    will-change: transform;
+    animation: drift-far 140s linear infinite;
 }
 
-@keyframes drift {
-    to { background-position: 0 -640px; }
+@keyframes drift-near {
+    to { transform: translateY(-320px); }
+}
+
+@keyframes drift-far {
+    to { transform: translateY(-460px); }
 }
 
 .hero-inner { position: relative; }
@@ -458,6 +470,7 @@ ul, ol { padding: 0; list-style: none; }
     height: 380px;
     margin: var(--space-7) auto 0;
     max-width: 980px;
+    contain: layout paint;
 }
 
 @media (min-width: 760px) {
@@ -473,7 +486,7 @@ ul, ol { padding: 0; list-style: none; }
     padding: 6px;
     border-radius: 28px;
     background: linear-gradient(160deg, #2A3B5C, #0B1324);
-    box-shadow: 0 0 0 1px var(--border-strong), var(--shadow-card);
+    box-shadow: 0 0 0 1px var(--border-strong), 0 18px 36px -18px rgba(0, 0, 0, 0.75);
     transform-origin: 50% 100%;
 }
 
@@ -502,9 +515,7 @@ ul, ol { padding: 0; list-style: none; }
     margin-top: -1px;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    background: rgba(11, 19, 36, 0.85);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: var(--navy-800);
 }
 
 @media (min-width: 860px) {
