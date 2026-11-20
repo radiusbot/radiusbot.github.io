@@ -32,4 +32,6 @@ The brand kit (vector mark, lockups, guidelines) is kept outside this repo, in `
 
 ## Deploying
 
+After editing `styles.css` or `main.js`, update the `?v=` stamp on its link in `index.html` (first 10 characters of `shasum -a 256 <file>`). GitHub Pages lets browsers cache files for 10 minutes; a new stamp makes them fetch the new file at once instead of mixing new HTML with old styles.
+
 Push to `main`. GitHub Pages updates within a few minutes. Google refreshes the search icon and site name the next time it crawls the page, which can take days to weeks; Search Console → URL Inspection → Request indexing speeds it up.
