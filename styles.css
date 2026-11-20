@@ -511,15 +511,15 @@ ul, ol { padding: 0; list-style: none; }
 .stats {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     margin-top: -1px;
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     background: var(--navy-800);
 }
 
-@media (min-width: 860px) {
-    .stats { grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 600px) {
+    .stats { grid-template-columns: repeat(3, 1fr); }
 }
 
 .stat {
@@ -531,11 +531,10 @@ ul, ol { padding: 0; list-style: none; }
     text-align: center;
 }
 
-.stat + .stat { border-left: 1px solid var(--border); }
+.stat + .stat { border-top: 1px solid var(--border); }
 
-@media (max-width: 859px) {
-    .stat:nth-child(3) { border-left: 0; }
-    .stat:nth-child(n + 3) { border-top: 1px solid var(--border); }
+@media (min-width: 600px) {
+    .stat + .stat { border-top: 0; border-left: 1px solid var(--border); }
 }
 
 .stat dd {
