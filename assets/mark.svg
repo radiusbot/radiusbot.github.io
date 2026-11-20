@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+      <defs>
+      <linearGradient id="body-m" x1="0.15" y1="0.1" x2="0.85" y2="0.95">
+        <stop offset="0" stop-color="#5FF7F0"/>
+        <stop offset="0.5" stop-color="#07E5DE"/>
+        <stop offset="1" stop-color="#0396B8"/>
+      </linearGradient>
+      <linearGradient id="ball-m" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#5FF7F0"/>
+        <stop offset="1" stop-color="#07E5DE"/>
+      </linearGradient>
+      <radialGradient id="eye-m" cx="0.38" cy="0.34" r="0.75">
+        <stop offset="0" stop-color="#FFFFFF"/>
+        <stop offset="0.4" stop-color="#5FF7F0"/>
+        <stop offset="1" stop-color="#07E5DE"/>
+      </radialGradient>
+      <radialGradient id="sheen-m" cx="0.32" cy="0.22" r="0.6">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.30"/>
+        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+      </radialGradient></defs>
+      <line x1="177.59083707151026" y1="177.59083707151024" x2="125.26493526370575" y2="125.26493526370572" stroke="#F3F7FB"
+            stroke-width="20.0" stroke-linecap="round"/>
+      <circle cx="106.88015895285551" cy="106.88015895285548" r="26.0" fill="url(#ball-m)"/>
+      <circle cx="278.0" cy="278.0" r="150.0" fill="url(#body-m)"/><circle cx="278.0" cy="278.0" r="150.0" fill="url(#sheen-m)"/><rect x="172.0" y="224.0" width="212.0" height="88.0" rx="44.0" fill="#0B1324"/><circle cx="228.18" cy="268.0" r="18.0" fill="url(#eye-m)"/><circle cx="327.82" cy="268.0" r="18.0" fill="url(#eye-m)"/><path d="M 224.0 344.0 Q 278.0 390.0 332.0 344.0" fill="none" stroke="#0B1324" stroke-width="20.0" stroke-linecap="round"/>
+    </svg>

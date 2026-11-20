@@ -1,1002 +1,377 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>radiusbot — Android, iOS &amp; SaaS Software Engineering</title>
-    <meta name="description" content="radiusbot builds dependable Android applications, iOS experiences, and scalable cloud SaaS software.">
-    <!-- Google Fonts: Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        navy: {
-                            50: '#eff4ff',
-                            100: '#dbe6fe',
-                            200: '#bfd3fe',
-                            600: '#254ed0',
-                            700: '#1e3a8a',
-                            800: '#172c6b',
-                            900: '#111f4d',
-                        }
-                    }
-                }
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RadiusBot: Websites and Mobile Apps</title>
+    <meta name="description" content="RadiusBot builds finished websites and mobile apps for you, from design to launch and support. Makers of Lexitile and Block Puzzle.">
+    <link rel="canonical" href="https://radiusbot.com/">
+    <meta name="theme-color" content="#070C18">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src https://formsubmit.co; form-action https://formsubmit.co mailto:; base-uri 'self'; object-src 'none'">
+
+    <!-- Icons: the browser tab uses favicon.svg/.ico; Google Search picks a
+         square icon whose size is a multiple of 48px. -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Link previews (WhatsApp, LinkedIn, X, Slack, iMessage) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="RadiusBot">
+    <meta property="og:title" content="RadiusBot: Websites and Mobile Apps">
+    <meta property="og:description" content="We build finished websites and mobile apps for you, from design to launch. Makers of Lexitile and Block Puzzle.">
+    <meta property="og:url" content="https://radiusbot.com/">
+    <meta property="og:image" content="https://radiusbot.com/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="RadiusBot logo">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Lets Google show "RadiusBot" as the site name and use the logo. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://radiusbot.com/#organization",
+                "name": "RadiusBot",
+                "url": "https://radiusbot.com/",
+                "logo": "https://radiusbot.com/assets/icon-512.png",
+                "email": "radiusbot@gmail.com"
+            },
+            {
+                "@type": "WebSite",
+                "name": "RadiusBot",
+                "url": "https://radiusbot.com/",
+                "publisher": { "@id": "https://radiusbot.com/#organization" }
             }
-        }
+        ]
+    }
     </script>
+
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/main.js" defer></script>
 </head>
-<body class="bg-[#FAFAF9] text-[#18181B] font-sans antialiased selection:bg-navy-700 selection:text-white">
+<body>
+    <!-- Icon sprite, drawn on a 24px grid with a 2px stroke. -->
+    <svg class="sprite" aria-hidden="true">
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-3.5 8-10V5l-8-3-8 3v7c0 6.5 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="14" height="14" rx="2"/><path d="M4 16a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2"/></symbol>
+        <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7zM22 2 11 13"/></symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+        <symbol id="i-play" viewBox="0 0 24 24"><path class="fill" d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5z"/></symbol>
+    </svg>
 
-    <!-- Subtle Notification Banner Container -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ===================================================================== -->
-    <!-- TOP CORPORATE NAVIGATION BAR                                          -->
-    <!-- ===================================================================== -->
-    <header class="sticky top-0 z-40 bg-[#FAFAF9]/95 backdrop-blur-md border-b border-[#E7E5E4]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
-            <!-- Brand Mark -->
-            <a href="#" class="flex items-center gap-2.5 group">
-                <div class="w-9 h-9 rounded-xl bg-navy-700 text-white flex items-center justify-center font-bold text-base tracking-tight shadow-sm group-hover:bg-navy-800 transition-colors">
-                    rb
-                </div>
-                <span class="text-xl font-bold tracking-tight text-[#18181B]">radiusbot</span>
+    <header class="site-header">
+        <div class="container header-row">
+            <a href="/" class="brand" aria-label="RadiusBot home">
+                <img src="/assets/lockup-on-dark.png" width="160" height="48" alt="RadiusBot">
             </a>
-
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#57534E]" aria-label="Main Navigation">
-                <a href="#products" class="hover:text-[#18181B] transition-colors">Products</a>
-                <a href="#services" class="hover:text-[#18181B] transition-colors">Services</a>
-                <a href="#about" class="hover:text-[#18181B] transition-colors">About Us</a>
-                <a href="#contact" class="px-4 py-2 rounded-xl bg-navy-700 hover:bg-navy-800 text-white font-semibold transition-colors shadow-sm">
-                    Contact Us
-                </a>
+            <nav class="nav" aria-label="Main">
+                <a href="#apps">Our apps</a>
+                <a href="#services">What we build</a>
+                <a href="#process">How we work</a>
+                <a href="#contact" class="button button-primary button-small">Get your product built</a>
             </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-toggle" type="button" onclick="toggleMobileMenu()"
-                    class="md:hidden p-2.5 rounded-xl text-[#57534E] hover:text-[#18181B] hover:bg-stone-200/60 transition-colors"
-                    aria-label="Toggle Menu" aria-expanded="false">
-                <i data-lucide="menu" id="menu-icon-open" class="w-5 h-5"></i>
-                <i data-lucide="x" id="menu-icon-close" class="w-5 h-5 hidden"></i>
+            <button class="menu-toggle" type="button" aria-controls="mobile-nav" aria-expanded="false" aria-label="Open menu">
+                <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
             </button>
         </div>
-
-        <!-- Mobile Dropdown Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-[#E7E5E4] px-4 pt-3 pb-5 space-y-2">
-            <a href="#products" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-[#18181B] hover:bg-stone-100">Products</a>
-            <a href="#services" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-[#18181B] hover:bg-stone-100">Services</a>
-            <a href="#about" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-[#18181B] hover:bg-stone-100">About Us</a>
-            <a href="#contact" onclick="closeMobileMenu()" class="block px-3 py-2.5 rounded-xl text-sm font-semibold text-white bg-navy-700 hover:bg-navy-800 text-center mt-2">
-                Contact Us
-            </a>
-        </div>
+        <nav id="mobile-nav" class="mobile-nav" aria-label="Main" hidden>
+            <a href="#apps">Our apps</a>
+            <a href="#services">What we build</a>
+            <a href="#process">How we work</a>
+            <a href="#contact" class="button button-primary">Get your product built</a>
+        </nav>
     </header>
 
-    <main>
-        <!-- ================================================================= -->
-        <!-- 1. HERO / COMPANY INTRODUCTION                                    -->
-        <!-- ================================================================= -->
-        <section class="py-16 sm:py-24 lg:py-28 border-b border-[#E7E5E4] bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl space-y-6">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-100 border border-[#E7E5E4] text-xs font-semibold text-[#57534E]">
-                        <span class="w-2 h-2 rounded-full bg-navy-700"></span>
-                        Android • iOS • SaaS Software Studio
-                    </div>
-
-                    <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-[#18181B] leading-[1.15]">
-                        Thoughtfully engineered mobile apps and reliable SaaS software.
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-[#57534E] leading-relaxed max-w-2xl">
-                        radiusbot is a software engineering company experienced in designing, building, and maintaining consumer Android and iOS applications alongside scalable cloud SaaS platforms. We focus on clean architecture, responsive performance, and dependable delivery.
+    <main id="main">
+        <!-- ============================== HERO ============================== -->
+        <section class="hero">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="dot" aria-hidden="true"></span>Websites &middot; Mobile apps</p>
+                    <h1>We build websites and mobile apps <span class="accent">people love to use.</span></h1>
+                    <p class="lead">
+                        Bring us your idea and we hand you a finished, working product:
+                        designed, built, launched and looked after by us. No developers to
+                        hire or manage. Our own apps are live on Google Play today.
                     </p>
-
-                    <div class="pt-2 flex flex-wrap items-center gap-3.5">
-                        <a href="#products" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-navy-700 hover:bg-navy-800 text-white text-sm font-semibold shadow-sm transition-colors">
-                            Our Products
-                            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    <div class="hero-actions">
+                        <a href="#contact" class="button button-primary">
+                            Get your product built
+                            <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
                         </a>
-                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-stone-50 text-[#18181B] border border-[#E7E5E4] text-sm font-semibold transition-colors">
-                            Contact Us
-                        </a>
+                        <a href="#apps" class="button button-ghost">See our apps</a>
                     </div>
+                    <ul class="hero-facts">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A finished product, not hired hands</li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Design, build and launch included</li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Updates and support after launch</li>
+                    </ul>
                 </div>
 
-                <!-- Clean Trust & Focus Strip -->
-                <div class="mt-14 pt-8 border-t border-[#E7E5E4] grid grid-cols-1 sm:grid-cols-3 gap-6">
-                    <div>
-                        <p class="text-sm font-semibold text-[#18181B]">Mobile First Craft</p>
-                        <p class="mt-1 text-sm text-[#57534E]">Published Android titles on Google Play with native iOS releases in active rollout.</p>
-                    </div>
-                    <div>
-                        <p class="text-sm font-semibold text-[#18181B]">Cloud SaaS Systems</p>
-                        <p class="mt-1 text-sm text-[#57534E]">Multi-tenant web applications, reliable APIs, and maintainable cloud backends.</p>
-                    </div>
-                    <div>
-                        <p class="text-sm font-semibold text-[#18181B]">Long-Term Stewardship</p>
-                        <p class="mt-1 text-sm text-[#57534E]">Built for fast load times, offline resilience, and clear user privacy standards.</p>
-                    </div>
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="orbit orbit-1"></div>
+                    <div class="orbit orbit-2"></div>
+                    <figure class="phone phone-back">
+                        <img src="/assets/apps/blockpuzzle-board.jpg" width="480" height="1044" alt="">
+                    </figure>
+                    <figure class="phone phone-front">
+                        <img src="/assets/apps/lexitile-search.jpg" width="480" height="1044" alt="">
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <!-- ================================================================= -->
-        <!-- 2. OUR PRODUCTS (APP & SOFTWARE SHOWCASE)                         -->
-        <!-- ================================================================= -->
-        <section id="products" class="py-16 sm:py-24 border-b border-[#E7E5E4]">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-                <!-- Section Header & Platform Filter Tabs -->
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div class="space-y-2 max-w-2xl">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-navy-700">Our Products</p>
-                        <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-[#18181B]">
-                            Apps &amp; software built by radiusbot
-                        </h2>
-                        <p class="text-sm sm:text-base text-[#57534E]">
-                            Explore our published mobile applications and cross-platform software releases.
-                        </p>
-                    </div>
-
-                    <!-- Clean Platform Filter Tabs -->
-                    <div class="inline-flex p-1 rounded-xl bg-stone-200/70 border border-[#E7E5E4] self-start" role="tablist" aria-label="Filter products by platform">
-                        <button type="button" onclick="filterProducts('All')" data-filter="All"
-                                class="filter-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-[#18181B] shadow-sm transition-all">
-                            All
-                        </button>
-                        <button type="button" onclick="filterProducts('Android')" data-filter="Android"
-                                class="filter-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-[#57534E] hover:text-[#18181B] transition-all">
-                            Android
-                        </button>
-                        <button type="button" onclick="filterProducts('iOS')" data-filter="iOS"
-                                class="filter-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-[#57534E] hover:text-[#18181B] transition-all">
-                            iOS
-                        </button>
-                        <button type="button" onclick="filterProducts('SaaS')" data-filter="SaaS"
-                                class="filter-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-[#57534E] hover:text-[#18181B] transition-all">
-                            SaaS
-                        </button>
-                    </div>
+        <!-- ============================ OUR APPS ============================ -->
+        <section id="apps" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <p class="kicker">Our apps</p>
+                    <h2>Made by RadiusBot</h2>
+                    <p>Products we designed, built and run ourselves. We build yours the same way.</p>
                 </div>
 
-                <!-- Product Cards Container -->
-                <div id="products-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-                    <!-- Rendered dynamically from PRODUCTS data array -->
-                </div>
-
-                <!-- Empty Filter Fallback (e.g. when SaaS tab is clicked while mobile apps are featured) -->
-                <div id="products-empty" class="hidden rounded-2xl bg-white border border-[#E7E5E4] p-10 text-center space-y-3">
-                    <p class="text-base font-semibold text-[#18181B]">Custom SaaS Platforms &amp; Client Solutions</p>
-                    <p class="text-sm text-[#57534E] max-w-lg mx-auto">
-                        In addition to our consumer mobile apps, we architect bespoke SaaS web applications and cloud backends for business teams.
-                    </p>
-                    <div class="pt-2 flex items-center justify-center gap-3">
-                        <button type="button" onclick="filterProducts('All')" class="px-4 py-2 rounded-xl border border-[#E7E5E4] text-xs font-semibold text-[#18181B] hover:bg-stone-50 transition-colors">
-                            View All Products
-                        </button>
-                        <a href="#contact" class="px-4 py-2 rounded-xl bg-navy-700 hover:bg-navy-800 text-white text-xs font-semibold transition-colors">
-                            Contact Us
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- 3. SERVICES / WHAT WE BUILD                                       -->
-        <!-- ================================================================= -->
-        <section id="services" class="py-16 sm:py-24 bg-white border-b border-[#E7E5E4]">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-                <div class="max-w-2xl space-y-2">
-                    <p class="text-xs font-semibold uppercase tracking-wider text-navy-700">Services</p>
-                    <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-[#18181B]">
-                        What we build
-                    </h2>
-                    <p class="text-sm sm:text-base text-[#57534E]">
-                        End-to-end product engineering across mobile ecosystems and cloud web infrastructure.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Android Development -->
-                    <div class="rounded-2xl bg-[#FAFAF9] border border-[#E7E5E4] p-7 flex flex-col justify-between space-y-6">
-                        <div class="space-y-4">
-                            <div class="w-11 h-11 rounded-xl bg-emerald-50 border border-emerald-200/80 text-emerald-700 flex items-center justify-center">
-                                <i data-lucide="smartphone" class="w-5 h-5"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-[#18181B]">Android Development</h3>
-                            <p class="text-sm text-[#57534E] leading-relaxed">
-                                Native and cross-platform Android apps optimized for smooth frame rates, battery efficiency, offline capability, and seamless Google Play distribution.
-                            </p>
+                <div class="apps-grid">
+                    <article class="app-card">
+                        <div class="app-shot">
+                            <img src="/assets/apps/lexitile-word.jpg" width="480" height="1044" loading="lazy" alt="Lexitile showing a word's definition and tile score">
                         </div>
-                        <ul class="pt-4 border-t border-[#E7E5E4] space-y-2 text-xs font-medium text-[#57534E]">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700"></i>
-                                Kotlin, Java &amp; Flutter architectures
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-700"></i>
-                                Google Play Store publishing &amp; lifecycle
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- iOS Development -->
-                    <div class="rounded-2xl bg-[#FAFAF9] border border-[#E7E5E4] p-7 flex flex-col justify-between space-y-6">
-                        <div class="space-y-4">
-                            <div class="w-11 h-11 rounded-xl bg-navy-50 border border-navy-200 text-navy-700 flex items-center justify-center">
-                                <i data-lucide="tablet-smartphone" class="w-5 h-5"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-[#18181B]">iOS Development</h3>
-                            <p class="text-sm text-[#57534E] leading-relaxed">
-                                Thoughtfully designed iPhone and iPad applications adhering strictly to Apple Human Interface Guidelines for responsive, intuitive user experiences.
-                            </p>
-                        </div>
-                        <ul class="pt-4 border-t border-[#E7E5E4] space-y-2 text-xs font-medium text-[#57534E]">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-navy-700"></i>
-                                Swift, SwiftUI &amp; cross-platform iOS
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-navy-700"></i>
-                                App Store compliance &amp; TestFlight rollouts
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- SaaS & Web Applications -->
-                    <div class="rounded-2xl bg-[#FAFAF9] border border-[#E7E5E4] p-7 flex flex-col justify-between space-y-6">
-                        <div class="space-y-4">
-                            <div class="w-11 h-11 rounded-xl bg-amber-50 border border-amber-200/80 text-amber-800 flex items-center justify-center">
-                                <i data-lucide="cloud" class="w-5 h-5"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-[#18181B]">SaaS &amp; Web Applications</h3>
-                            <p class="text-sm text-[#57534E] leading-relaxed">
-                                Multi-tenant cloud platforms, custom web applications, secure APIs, and scalable backend systems built to support growing customer workloads.
-                            </p>
-                        </div>
-                        <ul class="pt-4 border-t border-[#E7E5E4] space-y-2 text-xs font-medium text-[#57534E]">
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-amber-800"></i>
-                                Authentication, billing &amp; tenant isolation
-                            </li>
-                            <li class="flex items-center gap-2">
-                                <i data-lucide="check" class="w-3.5 h-3.5 text-amber-800"></i>
-                                REST/GraphQL APIs &amp; cloud databases
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- 4. ABOUT US                                                       -->
-        <!-- ================================================================= -->
-        <section id="about" class="py-16 sm:py-24 border-b border-[#E7E5E4]">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-                    <!-- Left Narrative -->
-                    <div class="lg:col-span-7 space-y-5">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-navy-700">About Us</p>
-                        <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-[#18181B]">
-                            Focused engineering for software that lasts.
-                        </h2>
-                        <p class="text-sm sm:text-base text-[#57534E] leading-relaxed">
-                            At radiusbot, we believe great software is defined by clarity, speed, and reliability rather than unnecessary complexity. Our engineering team builds both consumer mobile applications enjoyed by thousands of players and dependable B2B SaaS products designed for everyday operational work.
-                        </p>
-                        <p class="text-sm sm:text-base text-[#57534E] leading-relaxed">
-                            We work in focused, senior engineering teams with direct communication from initial architecture through store deployment and ongoing maintenance—ensuring every release is clean, well-tested, and respectful of user privacy.
-                        </p>
-                    </div>
-
-                    <!-- Right Core Values -->
-                    <div class="lg:col-span-5 space-y-4">
-                        <div class="rounded-2xl bg-white border border-[#E7E5E4] p-5 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-stone-100 border border-[#E7E5E4] text-navy-700 flex items-center justify-center shrink-0">
-                                <i data-lucide="compass" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-[#18181B]">Craft &amp; Reliability</h3>
-                                <p class="mt-1 text-xs sm:text-sm text-[#57534E] leading-relaxed">
-                                    We prioritize responsive interfaces, lightweight footprints, and clean codebases that remain easy to maintain over time.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-2xl bg-white border border-[#E7E5E4] p-5 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-stone-100 border border-[#E7E5E4] text-navy-700 flex items-center justify-center shrink-0">
-                                <i data-lucide="layers" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-[#18181B]">Cross-Platform Expertise</h3>
-                                <p class="mt-1 text-xs sm:text-sm text-[#57534E] leading-relaxed">
-                                    Deep experience bridging Android, iOS, and cloud web backends so your product works seamlessly wherever users are.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="rounded-2xl bg-white border border-[#E7E5E4] p-5 flex items-start gap-4">
-                            <div class="w-10 h-10 rounded-xl bg-stone-100 border border-[#E7E5E4] text-navy-700 flex items-center justify-center shrink-0">
-                                <i data-lucide="shield-check" class="w-5 h-5"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-bold text-[#18181B]">Privacy &amp; Security First</h3>
-                                <p class="mt-1 text-xs sm:text-sm text-[#57534E] leading-relaxed">
-                                    Transparent privacy policies, minimal data collection, and strong security practices across every mobile app and cloud service.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- 5. CONTACT US                                                     -->
-        <!-- ================================================================= -->
-        <section id="contact" class="py-16 sm:py-24 bg-white">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-                    <!-- Left Direct Contact Info -->
-                    <div class="lg:col-span-5 space-y-6">
-                        <div class="space-y-2">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-navy-700">Contact Us</p>
-                            <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-[#18181B]">
-                                Get in touch with our team
-                            </h2>
-                            <p class="text-sm sm:text-base text-[#57534E] leading-relaxed">
-                                Whether you are exploring a new Android, iOS, or SaaS build or have a question about one of our published applications, we would be glad to hear from you.
-                            </p>
-                        </div>
-
-                        <!-- Direct Email Card -->
-                        <div class="rounded-2xl bg-[#FAFAF9] border border-[#E7E5E4] p-5 space-y-3">
-                            <p class="text-xs font-semibold uppercase tracking-wider text-[#57534E]">Direct Email</p>
-                            <div class="flex items-center justify-between gap-3">
-                                <a href="mailto:radiusbot@gmail.com" id="company-email" class="text-base font-semibold text-navy-700 hover:underline">
-                                    radiusbot@gmail.com
-                                </a>
-                                <button type="button" onclick="copyEmailAddress()"
-                                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E7E5E4] hover:border-stone-300 text-xs font-semibold text-[#18181B] transition-colors">
-                                    <i data-lucide="copy" class="w-3.5 h-3.5 text-[#57534E]"></i>
-                                    Copy
-                                </button>
-                            </div>
-                            <p class="text-xs text-[#57534E]">
-                                Typical response time: within 1 business day.
-                            </p>
-                        </div>
-
-                        <!-- App Privacy & Support Quick Links -->
-                        <div class="space-y-2 text-xs text-[#57534E]">
-                            <p class="font-semibold text-[#18181B]">Published App Documentation</p>
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://radiusbot.github.io/blockpuzzle/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-navy-700 hover:underline font-medium">
-                                    Block Puzzle - Supreme Privacy Policy
-                                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-                                </a>
-                                <a href="https://radiusbot.github.io/lexitile/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-navy-700 hover:underline font-medium">
-                                    Lexitile Privacy Policy
-                                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Functional Contact Form -->
-                    <div class="lg:col-span-7">
-                        <div class="rounded-2xl bg-[#FAFAF9] border border-[#E7E5E4] p-6 sm:p-8">
-                            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div>
-                                    <label for="contact-topic" class="block text-xs font-semibold text-[#18181B] mb-1.5">Project Type</label>
-                                    <select id="contact-topic"
-                                            class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#E7E5E4] text-sm text-[#18181B] focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent">
-                                        <option value="Android App">Android App</option>
-                                        <option value="iOS App">iOS App</option>
-                                        <option value="SaaS / Web Platform">SaaS / Web Platform</option>
-                                        <option value="General Inquiry">General Inquiry</option>
-                                    </select>
-                                </div>
-
+                        <div class="app-body">
+                            <div class="app-title">
+                                <img class="app-icon" src="/assets/apps/lexitile-icon.png" width="64" height="64" alt="">
                                 <div>
-                                    <label for="contact-message" class="block text-xs font-semibold text-[#18181B] mb-1.5">Message *</label>
-                                    <textarea id="contact-message" rows="4" required placeholder="How can we help you?"
-                                              class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-[#E7E5E4] text-sm text-[#18181B] placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"></textarea>
-                                </div>
-
-                                <div class="pt-1 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                                    <p class="text-xs text-[#57534E]">Opens a pre-filled email to radiusbot@gmail.com.</p>
-                                    <button type="submit" id="contact-submit-btn" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-navy-700 hover:bg-navy-800 text-white text-sm font-semibold shadow-sm transition-colors">
-                                        Send Message
-                                        <i data-lucide="send" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </form>
-
-                            <!-- Instant Confirmation State -->
-                            <div id="contact-confirmation" class="hidden py-8 text-center space-y-4">
-                                <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-700 mx-auto flex items-center justify-center">
-                                    <i data-lucide="check-circle-2" class="w-6 h-6"></i>
-                                </div>
-                                <div class="space-y-2">
-                                    <h3 class="text-lg font-bold text-[#18181B]" id="confirmation-heading">Email draft opened</h3>
-                                    <p id="confirmation-summary" class="text-sm text-[#57534E] max-w-md mx-auto">
-                                        Your email draft to <strong class="text-[#18181B]">radiusbot@gmail.com</strong> has been opened in your mail client.
-                                    </p>
-                                    <p id="confirmation-fallback-wrap" class="text-xs text-[#57534E]">
-                                        If your browser did not open an email window automatically,
-                                        <a id="confirmation-mailto-fallback" href="mailto:radiusbot@gmail.com" class="font-semibold text-navy-700 underline">
-                                            click here to launch your email draft
-                                        </a>
-                                        or email <strong class="text-[#18181B]">radiusbot@gmail.com</strong> directly.
-                                    </p>
-                                </div>
-                                <div class="pt-2">
-                                    <button type="button" onclick="resetContactForm()" class="px-4 py-2 rounded-xl bg-white border border-[#E7E5E4] text-xs font-semibold text-[#18181B] hover:bg-stone-50 transition-colors">
-                                        Send another message
-                                    </button>
+                                    <h3>Lexitile - Scrabble Dictionary</h3>
+                                    <p class="app-category">Word game dictionary</p>
                                 </div>
                             </div>
+                            <p>
+                                A fast, offline word finder and dictionary for word game players.
+                                Type a pattern, use * for any unknown letter, and see every word that fits.
+                            </p>
+                            <ul class="checklist">
+                                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Wildcard and prefix search across 191,454 words</li>
+                                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Definitions, related forms and tile-by-tile scores</li>
+                                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Works fully offline, with favorites and dark mode</li>
+                            </ul>
+                            <div class="app-actions">
+                                <a class="button button-primary button-small" href="https://play.google.com/store/apps/details?id=com.financialfreedom.scabble" target="_blank" rel="noopener">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
+                                    Google Play
+                                </a>
+                                <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>App Store: coming soon</span>
+                            </div>
+                            <a class="privacy-link" href="https://radiusbot.github.io/lexitile/" target="_blank" rel="noopener">
+                                <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Privacy Policy
+                            </a>
                         </div>
+                    </article>
+
+                    <article class="app-card">
+                        <div class="app-shot">
+                            <img src="/assets/apps/blockpuzzle-dark.jpg" width="480" height="1044" loading="lazy" alt="Block Puzzle board in dark mode">
+                        </div>
+                        <div class="app-body">
+                            <div class="app-title">
+                                <img class="app-icon" src="/assets/apps/blockpuzzle-icon.png" width="64" height="64" alt="">
+                                <div>
+                                    <h3>Block Puzzle - Supreme</h3>
+                                    <p class="app-category">Casual puzzle game</p>
+                                </div>
+                            </div>
+                            <p>
+                                A calm 8&times;8 block puzzle. Clear rows and columns at your own pace:
+                                no timer, no rush, and it plays offline.
+                            </p>
+                            <ul class="checklist">
+                                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Journey mode with 100 levels, plus endless Classic</li>
+                                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Undo, automatic saving and offline play</li>
+                                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Light and dark themes, colorblind patterns</li>
+                            </ul>
+                            <div class="app-actions">
+                                <a class="button button-primary button-small" href="https://play.google.com/store/apps/details?id=com.radiusbot.blockpuzzle" target="_blank" rel="noopener">
+                                    <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>
+                                    Google Play
+                                </a>
+                                <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>App Store: coming soon</span>
+                            </div>
+                            <a class="privacy-link" href="https://radiusbot.github.io/blockpuzzle/" target="_blank" rel="noopener">
+                                <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Privacy Policy
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================== WHAT WE BUILD ========================= -->
+        <section id="services" class="section section-raised">
+            <div class="container">
+                <div class="section-head">
+                    <p class="kicker">What we build</p>
+                    <h2>Your product, built and delivered</h2>
+                    <p>You bring the idea. We take care of everything else and hand over a working website or app, live and ready for your customers.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div>
+                        <h3>Websites</h3>
+                        <p>
+                            Company sites, landing pages and web apps that load fast, look sharp
+                            on every screen and are easy to find on Google.
+                        </p>
+                        <ul class="checklist">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Design that matches your brand</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Fast on phones, search-engine ready</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Forms, sign-in, payments and dashboards</li>
+                        </ul>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></div>
+                        <h3>Mobile apps</h3>
+                        <p>
+                            Your app for iPhone and Android: smooth, reliable, and published
+                            on the App Store and Google Play for you.
+                        </p>
+                        <ul class="checklist">
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>One app for iPhone and Android</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Subscriptions and in-app purchases</li>
+                            <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Store listing, review and release handled</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================== HOW WE WORK ========================== -->
+        <section id="process" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <p class="kicker">How we work</p>
+                    <h2>From idea to finished product in four steps</h2>
+                </div>
+                <ol class="steps">
+                    <li>
+                        <span class="step-number">01</span>
+                        <h3>Talk</h3>
+                        <p>Tell us what you want to build. We reply within a business day with questions and a rough plan.</p>
+                    </li>
+                    <li>
+                        <span class="step-number">02</span>
+                        <h3>Design</h3>
+                        <p>You see clickable screens before any code is written, and we refine them together.</p>
+                    </li>
+                    <li>
+                        <span class="step-number">03</span>
+                        <h3>Build</h3>
+                        <p>We build in short rounds and share a working version you can try as we go.</p>
+                    </li>
+                    <li>
+                        <span class="step-number">04</span>
+                        <h3>Launch</h3>
+                        <p>We put your website or app live for your customers, then keep it updated, secure and running smoothly.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============================= CONTACT ============================ -->
+        <section id="contact" class="section section-raised">
+            <div class="container contact-grid">
+                <div class="contact-intro">
+                    <p class="kicker">Contact us</p>
+                    <h2>Tell us what you want built</h2>
+                    <p>
+                        Describe the website or app you have in mind, or ask about one of ours.
+                        We'll reply within one business day with questions and next steps.
+                    </p>
+                    <div class="email-card">
+                        <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+                        <a href="mailto:radiusbot@gmail.com">radiusbot@gmail.com</a>
+                        <button type="button" class="button button-ghost button-small" data-copy="radiusbot@gmail.com">
+                            <svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg>
+                            <span>Copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <form id="contact-form" action="https://formsubmit.co/radiusbot@gmail.com" method="POST" novalidate>
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="contact-name">Name</label>
+                                <input id="contact-name" name="name" type="text" autocomplete="name" required>
+                            </div>
+                            <div class="field">
+                                <label for="contact-email">Email</label>
+                                <input id="contact-email" name="email" type="email" autocomplete="email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="contact-topic">What do you need?</label>
+                            <select id="contact-topic" name="topic">
+                                <option>A website</option>
+                                <option>A mobile app</option>
+                                <option>A website and a mobile app</option>
+                                <option>A question about one of your apps</option>
+                                <option>Something else</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="contact-message">Message</label>
+                            <textarea id="contact-message" name="message" rows="5" required placeholder="A few lines about your idea, timeline or question"></textarea>
+                        </div>
+                        <!-- Spam trap: people never see or fill this field. -->
+                        <input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+                        <button type="submit" class="button button-primary button-block">
+                            <span class="button-label">Send message</span>
+                            <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>
+                        </button>
+                    </form>
+
+                    <div id="form-success" class="form-success" hidden tabindex="-1">
+                        <div class="success-mark"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
+                        <h3>Message sent</h3>
+                        <p>Thanks! We'll reply to <strong id="success-email"></strong> within one business day.</p>
+                        <button type="button" class="button button-ghost button-small" id="form-reset">Send another message</button>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ===================================================================== -->
-    <!-- 6. CLEAN CORPORATE FOOTER                                             -->
-    <!-- ===================================================================== -->
-    <footer class="bg-[#FAFAF9] border-t border-[#E7E5E4] py-10">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-[#57534E]">
-            <div class="flex items-center gap-2.5">
-                <div class="w-7 h-7 rounded-lg bg-navy-700 text-white flex items-center justify-center font-bold text-xs">
-                    rb
-                </div>
-                <span class="font-semibold text-[#18181B]">radiusbot</span>
-                <span>• © 2026 radiusbot. All rights reserved.</span>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-                <a href="#products" class="hover:text-[#18181B] transition-colors">Products</a>
-                <a href="#services" class="hover:text-[#18181B] transition-colors">Services</a>
-                <a href="#about" class="hover:text-[#18181B] transition-colors">About Us</a>
-                <a href="#contact" class="hover:text-[#18181B] transition-colors">Contact Us</a>
-                <span class="text-stone-300">|</span>
-                <a href="https://radiusbot.github.io/blockpuzzle/" target="_blank" rel="noopener noreferrer" class="hover:text-navy-700 transition-colors">
-                    Block Puzzle Privacy
-                </a>
-                <a href="https://radiusbot.github.io/lexitile/" target="_blank" rel="noopener noreferrer" class="hover:text-navy-700 transition-colors">
-                    Lexitile Privacy
-                </a>
-            </div>
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <a href="/" class="brand" aria-label="RadiusBot home">
+                <img src="/assets/lockup-on-dark.png" width="133" height="40" loading="lazy" alt="RadiusBot">
+            </a>
+            <nav class="footer-nav" aria-label="Footer">
+                <a href="#apps">Our apps</a>
+                <a href="#services">What we build</a>
+                <a href="#process">How we work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <p class="copyright">&copy; <span id="year">2026</span> RadiusBot. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- ===================================================================== -->
-    <!-- CUSTOMER-FRIENDLY PRODUCT DETAILS MODAL                               -->
-    <!-- ===================================================================== -->
-    <div id="product-modal" class="fixed inset-0 z-50 hidden overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
-        <div class="min-h-screen px-4 py-8 flex items-center justify-center">
-            <!-- Backdrop -->
-            <div onclick="closeProductModal()" class="fixed inset-0 bg-stone-900/40 backdrop-blur-xs transition-opacity"></div>
-
-            <!-- Modal Card -->
-            <div class="relative w-full max-w-2xl rounded-2xl bg-white border border-[#E7E5E4] shadow-xl overflow-hidden z-10">
-                <!-- Header -->
-                <div class="px-6 py-4 border-b border-[#E7E5E4] flex items-center justify-between bg-[#FAFAF9]">
-                    <span id="modal-product-category" class="text-xs font-semibold text-[#57534E]">Casual Mobile Game</span>
-                    <button type="button" onclick="closeProductModal()" class="p-2 rounded-xl text-[#57534E] hover:text-[#18181B] hover:bg-stone-200/60 transition-colors" aria-label="Close modal">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <!-- Body -->
-                <div id="modal-product-body" class="p-6 sm:p-8 space-y-6 max-h-[75vh] overflow-y-auto">
-                    <!-- Populated dynamically -->
-                </div>
-
-                <!-- Footer Links -->
-                <div id="modal-product-footer" class="px-6 py-4 border-t border-[#E7E5E4] bg-[#FAFAF9] flex flex-wrap items-center justify-between gap-3">
-                    <!-- Populated dynamically -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- PRODUCTS DATA & CLEAN INTERACTION SCRIPT                              -->
-    <!-- ===================================================================== -->
-    <script>
-        /**
-         * CONTACT & TELEMETRY CONFIGURATION
-         * 1. CONTACT_EMAIL: Destination email for direct inquiries and mailto drafts.
-         * 2. FORMSPREE_ENDPOINT: Optional Formspree URL (e.g. 'https://formspree.io/f/xxxxxxx').
-         *    When left empty (''), 'Send Message' opens a formatted mailto: draft directly.
-         *    When set, 'Send Message' submits silently via POST fetch().
-         * 3. STATS_ENDPOINT: Optional './stats.json' generated by a scheduled GitHub Action
-         *    (using google-play-scraper / app-store-scraper) to display real store metrics.
-         */
-        const CONTACT_EMAIL = 'radiusbot@gmail.com';
-        const FORMSPREE_ENDPOINT = '';
-        const STATS_ENDPOINT = './stats.json';
-
-        const PRODUCTS = [
-            {
-                id: 'block-puzzle-supreme',
-                name: 'Block Puzzle - Supreme',
-                category: 'Casual Mobile Game',
-                platforms: ['Android', 'iOS'],
-                description: 'Engaging classic and modern block-matching puzzle experience crafted for smooth performance, intuitive touch controls, and offline play.',
-                longDescription: 'Block Puzzle - Supreme brings a clean, responsive take on classic block-fitting gameplay. Arrange geometric blocks across an 8x8 grid, clear rows and columns for combo streaks, and enjoy distraction-free offline sessions with crisp visual feedback.',
-                downloads: null,
-                rating: null,
-                icon: 'grid-2x2',
-                iconBg: 'bg-amber-50 text-amber-800 border-amber-200',
-                androidLink: 'https://play.google.com/store/apps/details?id=com.radiusbot.blockpuzzle',
-                iosStatus: 'iOS: Coming soon...',
-                iosLink: null,
-                privacyLink: 'https://radiusbot.github.io/blockpuzzle/',
-                highlights: [
-                    'Smooth 60–120fps touch drag-and-drop placement with clean grid alignment',
-                    '100% playable offline with instant session save and resume',
-                    'Combo streak scoring and balanced progressive difficulty',
-                    'Lightweight app size engineered for battery efficiency'
-                ],
-                previewScreens: [
-                    { title: '8x8 Classic Board', subtitle: 'Clean grid layout & combo scoring' },
-                    { title: 'Offline Play Ready', subtitle: 'Instant launch with zero waiting' }
-                ]
-            },
-            {
-                id: 'lexitile-scrabble-dictionary',
-                name: 'Lexitile - Scrabble Dictionary',
-                category: 'Word & Reference Utility',
-                platforms: ['Android', 'iOS'],
-                description: 'Fast, offline-ready Scrabble word validator, anagram solver, and tournament dictionary built for instant lookup and competitive word-game players.',
-                longDescription: 'Lexitile - Scrabble Dictionary is designed for word-game enthusiasts and tournament competitors who need reliable, sub-second offline word verification, rack anagram solving, and pattern search without an internet connection.',
-                downloads: null,
-                rating: null,
-                icon: 'book-a',
-                iconBg: 'bg-navy-50 text-navy-700 border-navy-200',
-                androidLink: 'https://play.google.com/store/apps/details?id=com.financialfreedom.scabble',
-                iosStatus: 'iOS: Coming soon...',
-                iosLink: null,
-                privacyLink: 'https://radiusbot.github.io/lexitile/',
-                highlights: [
-                    'Instant offline tournament word validation with zero network latency',
-                    'Anagram solver with wildcard (?) support and tile score sorting',
-                    'Pattern lookup for prefixes, suffixes, and containing letter groups',
-                    'Dedicated study lists for two-letter and three-letter tournament words'
-                ],
-                previewScreens: [
-                    { title: 'Instant Word Validator', subtitle: 'Sub-second offline lexicon check' },
-                    { title: 'Anagram & Wildcard Solver', subtitle: 'Sorted by official tile points' }
-                ]
-            }
-        ];
-
-        let activeFilter = 'All';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            lucide.createIcons();
-            fetchOptionalLiveStats();
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeProductModal();
-                    closeMobileMenu();
-                }
-            });
-        });
-
-        /**
-         * Optional sync with ./stats.json when populated by a scheduled scraper job.
-         * Keeps downloads & ratings hidden until real numbers are supplied.
-         */
-        async function fetchOptionalLiveStats() {
-            try {
-                const response = await fetch(STATS_ENDPOINT, { cache: 'no-store' });
-                if (!response.ok) return;
-                const liveStats = await response.json();
-                if (!Array.isArray(liveStats)) return;
-
-                let updated = false;
-                liveStats.forEach(item => {
-                    const product = PRODUCTS.find(p => p.id === item.id);
-                    if (product) {
-                        if (item.downloads) product.downloads = String(item.downloads);
-                        if (item.rating) product.rating = String(item.rating);
-                        if (item.iosLink) product.iosLink = item.iosLink;
-                        updated = true;
-                    }
-                });
-
-                if (updated) {
-                    renderProducts();
-                }
-            } catch (_) {
-                // Silently keep authentic availability badges when stats.json is not present
-            }
-        }
-
-        // Helper: Render real metrics if available from stats.json, otherwise authentic platform badges
-        function renderProductStatusOrMetrics(product) {
-            const hasRealMetrics = Boolean(product.downloads || product.rating);
-            if (hasRealMetrics) {
-                return `
-                    <div class="flex flex-wrap items-center gap-5 text-xs">
-                        ${product.downloads ? `
-                            <div>
-                                <span class="text-[#57534E]">Downloads:</span>
-                                <span class="font-semibold text-[#18181B] ml-1">${escapeHTML(product.downloads)}</span>
-                            </div>
-                        ` : ''}
-                        ${product.rating ? `
-                            <div class="flex items-center gap-1">
-                                <span class="text-[#57534E]">Store Rating:</span>
-                                <span class="font-semibold text-[#18181B] ml-1">${escapeHTML(product.rating)}</span>
-                                <i data-lucide="star" class="w-3.5 h-3.5 text-amber-500 fill-current"></i>
-                            </div>
-                        ` : ''}
-                    </div>
-                `;
-            }
-
-            return `
-                <div class="flex flex-wrap items-center gap-2 text-xs">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-50 border border-emerald-200/80 text-emerald-800 font-medium">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                        Available on Google Play
-                    </span>
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-stone-100 border border-[#E7E5E4] text-[#57534E] font-medium">
-                        ${escapeHTML(product.iosStatus)}
-                    </span>
-                </div>
-            `;
-        }
-
-        // Mobile Navigation Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const openIcon = document.getElementById('menu-icon-open');
-            const closeIcon = document.getElementById('menu-icon-close');
-            const toggleBtn = document.getElementById('mobile-menu-toggle');
-
-            const isHidden = menu.classList.toggle('hidden');
-            openIcon.classList.toggle('hidden', !isHidden);
-            closeIcon.classList.toggle('hidden', isHidden);
-            toggleBtn.setAttribute('aria-expanded', String(!isHidden));
-        }
-
-        function closeMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (!menu.classList.contains('hidden')) {
-                toggleMobileMenu();
-            }
-        }
-
-        // Filter Products by Platform
-        function filterProducts(platform) {
-            activeFilter = platform;
-
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                const isSelected = tab.dataset.filter === platform;
-                tab.className = isSelected
-                    ? 'filter-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-[#18181B] shadow-sm transition-all'
-                    : 'filter-tab px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold text-[#57534E] hover:text-[#18181B] transition-all';
-            });
-
-            renderProducts();
-        }
-
-        // Render Product Cards
-        function renderProducts() {
-            const grid = document.getElementById('products-grid');
-            const emptyState = document.getElementById('products-empty');
-
-            const filtered = activeFilter === 'All'
-                ? PRODUCTS
-                : PRODUCTS.filter(p => p.platforms.includes(activeFilter));
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '';
-                emptyState.classList.remove('hidden');
-                lucide.createIcons();
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            grid.innerHTML = filtered.map(product => `
-                <article onclick="openProductModal('${product.id}')"
-                         class="cursor-pointer group rounded-2xl bg-white border border-[#E7E5E4] hover:border-stone-300 p-6 sm:p-8 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <!-- Header: Icon + Name + Category -->
-                        <div class="flex items-start justify-between gap-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-14 h-14 rounded-2xl border ${product.iconBg} flex items-center justify-center shrink-0">
-                                    <i data-lucide="${product.icon}" class="w-7 h-7"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg sm:text-xl font-bold text-[#18181B] group-hover:text-navy-700 transition-colors">
-                                        ${escapeHTML(product.name)}
-                                    </h3>
-                                    <p class="text-xs font-medium text-[#57534E] mt-0.5">${escapeHTML(product.category)}</p>
-                                </div>
-                            </div>
-
-                            <span class="inline-flex items-center gap-1 text-xs font-semibold text-navy-700 shrink-0">
-                                Details
-                                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-                            </span>
-                        </div>
-
-                        <!-- Description -->
-                        <p class="mt-4 text-sm text-[#57534E] leading-relaxed">
-                            ${escapeHTML(product.description)}
-                        </p>
-                    </div>
-
-                    <!-- Authentic Availability Badges / Verified Store Metrics + Store Buttons + Privacy Link -->
-                    <div class="mt-6 pt-5 border-t border-[#E7E5E4] space-y-4">
-                        ${renderProductStatusOrMetrics(product)}
-
-                        <!-- Store Links Row -->
-                        <div class="flex flex-wrap items-center gap-2.5">
-                            <a href="${escapeHTML(product.androidLink)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-                               class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-700 hover:bg-navy-800 text-white text-xs font-semibold transition-colors">
-                                <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
-                                Google Play
-                            </a>
-
-                            ${product.iosLink
-                                ? `<a href="${escapeHTML(product.iosLink)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-                                      class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#18181B] hover:bg-stone-800 text-white text-xs font-semibold transition-colors">
-                                       <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
-                                       App Store
-                                   </a>`
-                                : `<span onclick="event.stopPropagation()"
-                                         class="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-stone-100 border border-[#E7E5E4] text-xs font-medium text-[#57534E]">
-                                       <i data-lucide="clock" class="w-3.5 h-3.5 text-stone-400"></i>
-                                       ${escapeHTML(product.iosStatus)}
-                                   </span>`
-                            }
-                        </div>
-
-                        <!-- Privacy Policy Link -->
-                        <div class="pt-1">
-                            <a href="${escapeHTML(product.privacyLink)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()"
-                               class="inline-flex items-center gap-1.5 text-xs font-medium text-[#57534E] hover:text-navy-700 transition-colors">
-                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-navy-700"></i>
-                                Privacy Policy
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            `).join('');
-
-            lucide.createIcons();
-        }
-
-        // Product Details Modal
-        function openProductModal(productId) {
-            const product = PRODUCTS.find(p => p.id === productId);
-            if (!product) return;
-
-            document.getElementById('modal-product-category').textContent = product.category;
-
-            const previewsHTML = product.previewScreens.map(screen => `
-                <div class="rounded-xl bg-[#FAFAF9] border border-[#E7E5E4] p-4 space-y-3">
-                    <div class="flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-stone-300"></span>
-                        <span class="w-2 h-2 rounded-full bg-stone-300"></span>
-                        <span class="w-2 h-2 rounded-full bg-stone-300"></span>
-                    </div>
-                    <div class="space-y-1.5 py-2">
-                        <div class="h-2 w-2/3 rounded-full bg-stone-200"></div>
-                        <div class="h-2 w-1/2 rounded-full bg-stone-200/70"></div>
-                        <div class="grid grid-cols-3 gap-2 pt-2">
-                            <div class="h-8 rounded-lg bg-white border border-[#E7E5E4]"></div>
-                            <div class="h-8 rounded-lg bg-white border border-[#E7E5E4]"></div>
-                            <div class="h-8 rounded-lg bg-white border border-[#E7E5E4]"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-xs font-bold text-[#18181B]">${escapeHTML(screen.title)}</p>
-                        <p class="text-xs text-[#57534E]">${escapeHTML(screen.subtitle)}</p>
-                    </div>
-                </div>
-            `).join('');
-
-            const highlightsHTML = product.highlights.map(item => `
-                <li class="flex items-start gap-2.5 text-sm text-[#57534E]">
-                    <i data-lucide="check" class="w-4 h-4 text-navy-700 shrink-0 mt-0.5"></i>
-                    <span>${escapeHTML(item)}</span>
-                </li>
-            `).join('');
-
-            document.getElementById('modal-product-body').innerHTML = `
-                <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-2xl border ${product.iconBg} flex items-center justify-center shrink-0">
-                        <i data-lucide="${product.icon}" class="w-8 h-8"></i>
-                    </div>
-                    <div class="space-y-1.5">
-                        <h3 id="modal-product-title" class="text-xl sm:text-2xl font-bold text-[#18181B]">
-                            ${escapeHTML(product.name)}
-                        </h3>
-                        ${renderProductStatusOrMetrics(product)}
-                    </div>
-                </div>
-
-                <p class="text-sm text-[#57534E] leading-relaxed">
-                    ${escapeHTML(product.longDescription)}
-                </p>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    ${previewsHTML}
-                </div>
-
-                <div class="space-y-3">
-                    <h4 class="text-xs font-semibold uppercase tracking-wider text-[#18181B]">Key Features</h4>
-                    <ul class="space-y-2">
-                        ${highlightsHTML}
-                    </ul>
-                </div>
-            `;
-
-            document.getElementById('modal-product-footer').innerHTML = `
-                <a href="${escapeHTML(product.privacyLink)}" target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#57534E] hover:text-navy-700 transition-colors">
-                    <i data-lucide="shield-check" class="w-4 h-4 text-navy-700"></i>
-                    Privacy Policy
-                </a>
-
-                <div class="flex flex-wrap items-center gap-2.5">
-                    <a href="${escapeHTML(product.androidLink)}" target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-700 hover:bg-navy-800 text-white text-xs font-semibold transition-colors">
-                        <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
-                        Google Play
-                    </a>
-                    <span class="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-stone-100 border border-[#E7E5E4] text-xs font-medium text-[#57534E]">
-                        <i data-lucide="clock" class="w-3.5 h-3.5 text-stone-400"></i>
-                        ${escapeHTML(product.iosStatus)}
-                    </span>
-                </div>
-            `;
-
-            document.getElementById('product-modal').classList.remove('hidden');
-            lucide.createIcons();
-        }
-
-        function closeProductModal() {
-            document.getElementById('product-modal').classList.add('hidden');
-        }
-
-        // Contact Section Actions
-        function copyEmailAddress() {
-            const tempInput = document.createElement('input');
-            tempInput.value = CONTACT_EMAIL;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand('copy');
-            tempInput.remove();
-            showToast(`Copied ${CONTACT_EMAIL} to clipboard`);
-        }
-
-        async function handleContactSubmit(event) {
-            event.preventDefault();
-            const name = document.getElementById('contact-name').value.trim();
-            const email = document.getElementById('contact-email').value.trim();
-            const topic = document.getElementById('contact-topic').value;
-            const message = document.getElementById('contact-message').value.trim();
-
-            if (!name || !email || !message) return;
-
-            const submitBtn = document.getElementById('contact-submit-btn');
-
-            // Optional Formspree endpoint support if configured
-            if (FORMSPREE_ENDPOINT) {
-                submitBtn.disabled = true;
-                submitBtn.classList.add('opacity-70');
-                try {
-                    const res = await fetch(FORMSPREE_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({ name, email, topic, message })
-                    });
-                    if (!res.ok) throw new Error('Form submission failed');
-
-                    document.getElementById('contact-form').classList.add('hidden');
-                    document.getElementById('confirmation-heading').textContent = 'Message sent';
-                    document.getElementById('confirmation-summary').innerHTML =
-                        `Thank you, <strong class="text-[#18181B]">${escapeHTML(name)}</strong>. Your inquiry regarding "${escapeHTML(topic)}" has been delivered to <strong class="text-[#18181B]">${CONTACT_EMAIL}</strong>.`;
-                    document.getElementById('confirmation-fallback-wrap').classList.add('hidden');
-                    document.getElementById('contact-confirmation').classList.remove('hidden');
-                    lucide.createIcons();
-                    return;
-                } catch (_) {
-                    // Fall through to mailto: if Formspree endpoint fails
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-70');
-                }
-            }
-
-            // Default: Construct formatted mailto: URL so static hosting works out of the box
-            const subject = `[radiusbot Inquiry — ${topic}] from ${name}`;
-            const body = [
-                `Name: ${name}`,
-                `Reply Email: ${email}`,
-                `Project Type: ${topic}`,
-                ``,
-                `Message:`,
-                message
-            ].join('\n');
-
-            const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-            document.getElementById('contact-form').classList.add('hidden');
-            document.getElementById('confirmation-heading').textContent = 'Email draft opened';
-            document.getElementById('confirmation-summary').innerHTML =
-                `Thank you, <strong class="text-[#18181B]">${escapeHTML(name)}</strong>. Your email draft to <strong class="text-[#18181B]">${CONTACT_EMAIL}</strong> has been prepared with your inquiry details.`;
-            document.getElementById('confirmation-fallback-wrap').classList.remove('hidden');
-            document.getElementById('confirmation-mailto-fallback').setAttribute('href', mailtoUrl);
-            document.getElementById('contact-confirmation').classList.remove('hidden');
-            lucide.createIcons();
-
-            window.location.href = mailtoUrl;
-        }
-
-        function resetContactForm() {
-            document.getElementById('contact-form').reset();
-            document.getElementById('contact-confirmation').classList.add('hidden');
-            document.getElementById('contact-form').classList.remove('hidden');
-        }
-
-        // Subtle Notification Toast
-        function showToast(message) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'pointer-events-auto flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#18181B] text-white text-xs font-medium shadow-lg transition-opacity duration-300';
-            toast.innerHTML = `
-                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span>${escapeHTML(message)}</span>
-            `;
-            container.appendChild(toast);
-            lucide.createIcons();
-
-            setTimeout(() => {
-                toast.classList.add('opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 2500);
-        }
-
-        function escapeHTML(str) {
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-    </script>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 </body>
 </html>
