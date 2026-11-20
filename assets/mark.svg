@@ -9,10 +9,14 @@
         <stop offset="0" stop-color="#5FF7F0"/>
         <stop offset="1" stop-color="#07E5DE"/>
       </linearGradient>
-      <radialGradient id="eye-m" cx="0.38" cy="0.34" r="0.75">
-        <stop offset="0" stop-color="#FFFFFF"/>
-        <stop offset="0.4" stop-color="#5FF7F0"/>
-        <stop offset="1" stop-color="#07E5DE"/>
+      <radialGradient id="lens-m" cx="0.5" cy="0.45" r="0.6">
+        <stop offset="0" stop-color="#1B2D4D"/>
+        <stop offset="0.7" stop-color="#0B1324"/>
+        <stop offset="1" stop-color="#070C18"/>
+      </radialGradient>
+      <radialGradient id="iris-m" cx="0.5" cy="0.5" r="0.5">
+        <stop offset="0" stop-color="#5FF7F0"/>
+        <stop offset="1" stop-color="#07E5DE" stop-opacity="0.15"/>
       </radialGradient>
       <radialGradient id="sheen-m" cx="0.32" cy="0.22" r="0.6">
         <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.30"/>
@@ -21,5 +25,5 @@
       <line x1="177.59083707151026" y1="177.59083707151024" x2="125.26493526370575" y2="125.26493526370572" stroke="#F3F7FB"
             stroke-width="20.0" stroke-linecap="round"/>
       <circle cx="106.88015895285551" cy="106.88015895285548" r="26.0" fill="url(#ball-m)"/>
-      <circle cx="278.0" cy="278.0" r="150.0" fill="url(#body-m)"/><circle cx="278.0" cy="278.0" r="150.0" fill="url(#sheen-m)"/><rect x="172.0" y="224.0" width="212.0" height="88.0" rx="44.0" fill="#0B1324"/><circle cx="228.18" cy="268.0" r="18.0" fill="url(#eye-m)"/><circle cx="327.82" cy="268.0" r="18.0" fill="url(#eye-m)"/><path d="M 224.0 344.0 Q 278.0 390.0 332.0 344.0" fill="none" stroke="#0B1324" stroke-width="20.0" stroke-linecap="round"/>
+      <rect x="116.0" y="262.0" width="22.0" height="44.0" rx="10.0" fill="#0396B8"/><rect x="418.0" y="262.0" width="22.0" height="44.0" rx="10.0" fill="#0396B8"/><circle cx="278.0" cy="278.0" r="150.0" fill="url(#body-m)"/><circle cx="278.0" cy="278.0" r="150.0" fill="url(#sheen-m)"/><rect x="262.0" y="257.0" width="32.0" height="18.0" rx="9.0" fill="#F3F7FB"/><circle cx="224.0" cy="272.0" r="55.0" fill="#F3F7FB"/><circle cx="332.0" cy="272.0" r="55.0" fill="#F3F7FB"/><circle cx="224.0" cy="272.0" r="46.0" fill="url(#lens-m)"/><circle cx="224.0" cy="277.0" r="23.0" fill="url(#iris-m)"/><circle cx="224.0" cy="277.0" r="10.58" fill="#070C18"/><circle cx="237.8" cy="266.48" r="8.74" fill="#FFFFFF"/><circle cx="211.12" cy="291.32" r="3.68" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="332.0" cy="272.0" r="46.0" fill="url(#lens-m)"/><circle cx="332.0" cy="277.0" r="23.0" fill="url(#iris-m)"/><circle cx="332.0" cy="277.0" r="10.58" fill="#070C18"/><circle cx="345.8" cy="266.48" r="8.74" fill="#FFFFFF"/><circle cx="319.12" cy="291.32" r="3.68" fill="#FFFFFF" fill-opacity="0.8"/><path d="M 256.0 348.0 Q 278.0 364.0 300.0 348.0" fill="none" stroke="#0B1324" stroke-width="12.0" stroke-linecap="round"/>
     </svg>
