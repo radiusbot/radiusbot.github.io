@@ -1,8 +1,11 @@
-// RadiusBot site behaviour: mobile menu, copy-email, contact form and
-// scroll reveal. Everything on the page works without this script; the
-// contact form then falls back to a normal POST to FormSubmit.
+// RadiusBot site behaviour: mobile menu, contact form and scroll reveal.
+// Everything on the page works without this script; the contact form then
+// falls back to a normal POST to FormSubmit.
 
-const CONTACT_EMAIL = 'radiusbot@gmail.com';
+// The address appears on the page only when a message fails to send, so
+// customers are never stuck. It's assembled here rather than written out,
+// so bots scanning the source for addresses don't find it.
+const CONTACT_EMAIL = ['radiusbot', 'gmail.com'].join('@');
 
 // FormSubmit (formsubmit.co) forwards the form to CONTACT_EMAIL. GitHub
 // Pages can't run a server, so a forwarding service is the only way for a
@@ -12,11 +15,9 @@ const CONTACT_EMAIL = 'radiusbot@gmail.com';
 const FORM_ID = 'e5fada3f0a762b5dd8ba140e8d99081b';
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_ID}`;
 const FORM_TIMEOUT_MS = 15000;
-const TOAST_DURATION_MS = 2400;
 
 document.addEventListener('DOMContentLoaded', () => {
     setUpMobileMenu();
-    setUpCopyButtons();
     setUpContactForm();
     setUpReveal();
     document.getElementById('year').textContent = String(new Date().getFullYear());
@@ -46,31 +47,6 @@ function setUpMobileMenu() {
             toggle.focus();
         }
     });
-}
-
-// ------------------------------------------------------------- copy email
-
-function setUpCopyButtons() {
-    document.querySelectorAll('[data-copy]').forEach((button) => {
-        button.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(button.dataset.copy);
-                showToast('Email address copied');
-            } catch {
-                showToast(`Copy failed. Our email is ${button.dataset.copy}`);
-            }
-        });
-    });
-}
-
-let toastTimer;
-
-function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.textContent = message;
-    toast.hidden = false;
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => { toast.hidden = true; }, TOAST_DURATION_MS);
 }
 
 // ----------------------------------------------------------- contact form
@@ -135,8 +111,8 @@ function setUpContactForm() {
         } catch {
             const mailto = buildMailto({ name, email, topic, message });
             setStatus(
-                `Your message couldn't be sent. Please try again, or ` +
-                `<a href="${mailto}">email us directly</a>.`,
+                `Your message couldn't be sent. Please try again, or email us at ` +
+                `<a href="${mailto}">${CONTACT_EMAIL}</a>.`,
                 true,
             );
         } finally {

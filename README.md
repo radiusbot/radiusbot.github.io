@@ -8,7 +8,7 @@ It's the developer website listed in Play Console, the App Store (Marketing URL)
 |---|---|
 | `index.html` | The page: hero, our apps, what we build, how we work, contact. |
 | `styles.css` | All styling. Colours and type follow the RadiusBot brand guidelines (Night Navy, Radius Cyan, Avenir Next). |
-| `main.js` | Mobile menu, copy-email, contact form, scroll reveal. The page works without it. |
+| `main.js` | Mobile menu, contact form, scroll reveal. The page works without it. |
 | `assets/` | Logo lockup, icons, share image (`og-image.png`) and app screenshots/icons. |
 | `favicon.ico`, `favicon.svg`, `site.webmanifest` | Browser-tab and Google Search icon. Google picks a square icon whose size is a multiple of 48px. |
 | `robots.txt`, `sitemap.xml` | Let search engines find the page. |
@@ -17,7 +17,7 @@ It's the developer website listed in Play Console, the App Store (Marketing URL)
 
 ## Contact form
 
-The form posts to [FormSubmit](https://formsubmit.co), which forwards each message to `radiusbot@gmail.com` (GitHub Pages can't run a server). It's activated, and the page addresses it by FormSubmit's alias (`FORM_ID` in `main.js`, and the form's `action`) instead of the email address. If sending fails, the page offers a pre-filled email instead.
+The form posts to [FormSubmit](https://formsubmit.co), which forwards each message to `radiusbot@gmail.com` (GitHub Pages can't run a server). It's activated, and the page addresses it by FormSubmit's alias (`FORM_ID` in `main.js`, and the form's `action`) instead of the email address. The email address isn't shown on the page; it appears only if a message fails to send, with a link to a pre-filled email.
 
 ## Logo and brand
 

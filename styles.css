@@ -667,31 +667,6 @@ p { margin: 0; }
     .contact-grid { grid-template-columns: 0.9fr 1.1fr; gap: var(--space-8); }
 }
 
-.email-card {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--space-3);
-    margin-top: var(--space-6);
-    padding: var(--space-4) var(--space-5);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-md);
-    background: var(--bg-surface);
-}
-
-.email-card > .icon { color: var(--accent); }
-
-.email-card a {
-    flex: 1 1 auto;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.email-card a:hover { color: var(--accent); }
-
-.email-card .button .icon { width: 16px; height: 16px; }
-
 .form-card {
     padding: var(--space-5);
     border: 1px solid var(--border);
@@ -827,25 +802,6 @@ p { margin: 0; }
 .footer-nav a:hover { color: var(--text-primary); }
 
 .copyright { color: var(--text-muted); font-size: 14px; }
-
-/* ----------------------------------------------------------------- toast */
-
-.toast {
-    position: fixed;
-    left: 50%;
-    bottom: var(--space-5);
-    z-index: 60;
-    transform: translateX(-50%);
-    padding: var(--space-3) var(--space-5);
-    border-radius: var(--radius-pill);
-    background: var(--cloud);
-    color: var(--navy-900);
-    font-size: 15px;
-    font-weight: 600;
-    box-shadow: var(--shadow-card);
-}
-
-.toast[hidden] { display: none; }
 
 /* ----------------------------------------------------------- reveal on scroll */
 
