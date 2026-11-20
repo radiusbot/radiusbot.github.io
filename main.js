@@ -7,9 +7,10 @@ const CONTACT_EMAIL = 'radiusbot@gmail.com';
 // FormSubmit (formsubmit.co) forwards the form to CONTACT_EMAIL. GitHub
 // Pages can't run a server, so a forwarding service is the only way for a
 // static site to send mail without opening the visitor's mail app. The
-// first message ever sent triggers a one-time "Activate Form" email to
-// CONTACT_EMAIL; messages are delivered once that link is clicked.
-const FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+// form is activated; FORM_ID is FormSubmit's alias for CONTACT_EMAIL, so
+// the address isn't sent to FormSubmit from the page.
+const FORM_ID = 'e5fada3f0a762b5dd8ba140e8d99081b';
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${FORM_ID}`;
 const FORM_TIMEOUT_MS = 15000;
 const TOAST_DURATION_MS = 2400;
 

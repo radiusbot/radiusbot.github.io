@@ -17,7 +17,7 @@ It's the developer website listed in Play Console, the App Store (Marketing URL)
 
 ## Contact form
 
-The form posts to [FormSubmit](https://formsubmit.co), which forwards each message to `radiusbot@gmail.com` (GitHub Pages can't run a server). The very first message triggers a one-time **Activate Form** email to that inbox; nothing is delivered until that link is clicked. If sending fails, the page offers a pre-filled email instead.
+The form posts to [FormSubmit](https://formsubmit.co), which forwards each message to `radiusbot@gmail.com` (GitHub Pages can't run a server). It's activated, and the page addresses it by FormSubmit's alias (`FORM_ID` in `main.js`, and the form's `action`) instead of the email address. If sending fails, the page offers a pre-filled email instead.
 
 ## Logo and brand
 
